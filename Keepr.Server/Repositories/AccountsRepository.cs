@@ -27,7 +27,7 @@ namespace Keepr.Server.Repositories
             VALUES
               (@Name, @Picture, @Email, @Id)";
             _db.Execute(sql, newAccount);
-            
+            return newAccount;
         }
 
     }
