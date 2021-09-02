@@ -7,16 +7,16 @@ using Keepr.Server.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Keepr.Server.Controllers
+namespace Keepr.Server.
 {
     [ApiController]
     [Route("api/[controller]")]
     public class KeepsController : ControllerBase
     {
         private readonly KeepsService _service;
-    private readonly AccountService _serviceAccount;
+        private readonly AccountService _serviceAccount;
 
-    public KeepsController(KeepsService service, AccountService acct)
+        public KeepsController(KeepsService service, AccountService acct)
         {
             _service = service;
             _serviceAccount = acct;
@@ -50,7 +50,7 @@ namespace Keepr.Server.Controllers
             }
         }
 
-        
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Keep>> Create([FromBody] Keep k)
@@ -60,7 +60,7 @@ namespace Keepr.Server.Controllers
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 k.CreatorId = userInfo.Id;
 
-                
+
                 Keep newK = _service.Create(k);
                 newK.Creator = userInfo;
                 return Ok(newK);
@@ -105,7 +105,7 @@ namespace Keepr.Server.Controllers
                 return BadRequest(e.Message);
             }
         }
-    
+
 
 
 
